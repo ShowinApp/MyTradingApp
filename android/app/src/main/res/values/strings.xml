@@ -1,0 +1,7 @@
+<?xml version='1.0' encoding='utf-8'?>
+<resources>
+    <string name="app_name">MyTradingApp</string>
+    <string name="title_activity_main">MyTradingApp</string>
+    <string name="package_name">com.myapp.trading</string>
+    <string name="custom_url_scheme">com.myapp.trading</string>
+</resources>

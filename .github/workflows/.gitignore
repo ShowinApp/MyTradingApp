@@ -1,0 +1,7 @@
+node_modules/
+android/app/build/
+android/.gradle/
+android/.idea/
+*.jks
+.DS_Store
+.env
