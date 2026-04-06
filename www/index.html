@@ -1,0 +1,53 @@
+<!DOCTYPE html>
+<html lang="fa" dir="rtl">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Trading App</title>
+    <style>
+        body { margin: 0; padding: 0; overflow: hidden; background-color: #8B0000; color: white; font-family: sans-serif; }
+        #loading { display: flex; justify-content: center; align-items: center; height: 100vh; font-size: 20px; }
+        #data-display { display: none; text-align: center; padding-top: 50px; }
+        .price-box { font-size: 32px; font-weight: bold; color: #FFD700; margin: 20px; }
+        iframe { width: 100%; height: 100vh; border: none; display: none; }
+    </style>
+</head>
+<body>
+
+    <!-- صفحه لودینگ -->
+    <div id="loading">در حال اتصال به صرافی...</div>
+
+    <!-- صفحه نمایش داده‌های استخراج شده -->
+    <div id="data-display">
+        <h1>قیمت لحظه‌ای اتریوم</h1>
+        <div class="price-box" id="eth-price">---</div>
+        <button onclick="location.reload()" style="padding: 10px 20px; font-size: 16px; cursor: pointer;">بروزرسانی</button>
+    </div>
+
+    <!-- وب‌ویو مخفی برای استخراج داده -->
+    <!-- نکته: بسیاری از سایت‌ها اجازه لود شدن در iframe را نمی‌دهند. 
+         اگر سایت شما اجازه نداد، باید از روش ریدایرکت WebView استفاده کنیم که در مرحله بعد توضیح می‌دهم -->
+    <iframe id="hidden-frame" src="https://cp.pecpool.cc"></iframe>
+
+    <script>
+        // شبیه‌سازی استخراج داده (چون دسترسی مستقیم به iframe_cross-origin محدود است)
+        // برای سایت‌هایی که CORS دارند یا مال خودتان است، این کد کار می‌کند.
+        // برای سایت‌های خارجی مثل Pocket Option، ما باید از "Capacitor Plugin" استفاده کنیم.
+        
+        // اما چون نمی‌خواهیم درگیر پلاگین نویسی پیچیده شویم، 
+        // بهترین راه برای سایت‌های خارجی استفاده از 'window.location' در خودِ WebView است.
+        
+        // در اینجا ما فرض می‌کنیم شما می‌خواهید کاربر اول لاگین کند، سپس داده بگیرد.
+        // پس بهتر است کل صفحه WebView باشد و با JS تزریقی کار کنیم.
+        
+        document.getElementById('loading').innerText = "لطفاً منتظر بمانید...";
+        
+        // این بخش فقط برای تست است. در واقعیت، ما از Capacitor Browser یا WebView استفاده می‌کنیم.
+        setTimeout(() => {
+            document.getElementById('loading').style.display = 'none';
+            document.getElementById('data-display').style.display = 'block';
+            document.getElementById('eth-price').innerText = "2500.50 $"; // داده تستی
+        }, 3000);
+    </script>
+</body>
+</html>
