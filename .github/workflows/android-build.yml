@@ -20,7 +20,7 @@ jobs:
       run: npm install
 
     - name: Sync Capacitor
-      run: npx cap sync android
+      run: npm run sync-android
 
     - name: Setup Java JDK
       uses: actions/setup-java@v4
@@ -32,9 +32,7 @@ jobs:
       run: chmod +x ./android/gradlew
 
     - name: Build Android APK
-      run: |
-        cd android
-        ./gradlew assembleDebug --stacktrace
+      run: npm run build-android
 
     - name: Upload APK
       uses: actions/upload-artifact@v4
